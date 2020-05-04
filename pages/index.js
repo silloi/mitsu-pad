@@ -161,11 +161,11 @@ export default function Home() {
 
       <main>
         <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Koike SD-303
         </h1>
 
         <p className="description">
-          Get started by editing <code>pages/index.js</code>
+          Load YouTube URL and tap pads below
         </p>
 
         <div className="grid">
@@ -186,12 +186,11 @@ export default function Home() {
 
       <footer>
         <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          href="https://twitter.com/silloi93"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
+          Created by Silloi
         </a>
       </footer>
 
@@ -203,6 +202,8 @@ export default function Home() {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          background-color: #000;
+          color: #fff;
         }
 
         main {
@@ -217,7 +218,6 @@ export default function Home() {
         footer {
           width: 100%;
           height: 100px;
-          border-top: 1px solid #eaeaea;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -285,13 +285,15 @@ export default function Home() {
         }
 
         .card {
-          height: 64px;
-          width: 64px;
+          height: 80px;
+          width: 80px;
           margin: 1rem;
           flex-basis: 45%;
           padding: 1.5rem;
           text-align: center;
+          background-color: #222;
           color: inherit;
+          font-size: 1rem;
           text-decoration: none;
           border: 1px solid #eaeaea;
           border-radius: 10px;
