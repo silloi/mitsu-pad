@@ -1,10 +1,14 @@
 import Head from 'next/head'
 import React, { useEffect } from 'react';
 import BufferLoader from '../components/BufferLoader'
+import YouTube from '../components/YouTube';
+import { isResSent } from 'next/dist/next-server/lib/utils';
 
 export default function Home() {
   let context;
   let bufferLoader;
+
+  const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
 
   function pushMD() {
   // Fix up prefixing
@@ -152,6 +156,17 @@ export default function Home() {
     }
   }
 
+
+  // url
+  const [url, setUrl] = React.useState('')
+  // video data
+  const [resVideo, setResVideo] = React.useState('')
+
+  const handleChange = (event) => {
+    setUrl(event.target.value)
+    console.log(url)
+  }
+
   return (
     <div className="container">
       <Head>
@@ -167,6 +182,14 @@ export default function Home() {
         <p className="description">
           Load YouTube URL and tap pads below
         </p>
+
+        <p>
+          https://www.youtube.com/watch?v=&nbsp;
+          <input type="text" name="url" className="url" value={url} onChange={handleChange} />
+        </p>
+        {url &&
+          <YouTube id={url} />
+        }
 
         <div className="grid">
           <button className="card" onClick={() => pushMD()}>
@@ -281,7 +304,7 @@ export default function Home() {
           flex-wrap: wrap;
 
           max-width: 800px;
-          margin-top: 3rem;
+          margin-top: 1rem;
         }
 
         .card {
