@@ -174,7 +174,7 @@ export default function Home() {
 
       <main>
         <h1 className="title">
-          <img src="/logo.png" width="400px"/>
+          <img src="/logo.png" width="320px"/>
         </h1>
 
         <p className="description">
@@ -278,7 +278,7 @@ export default function Home() {
 
         .description {
           line-height: 1.5;
-          font-size: 1.4rem;
+          font-size: 1.2rem;
         }
 
         .url {
