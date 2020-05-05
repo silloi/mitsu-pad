@@ -168,7 +168,7 @@ export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Koike SD-3</title>
+        <title>Koike SD-303</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
