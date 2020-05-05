@@ -8,8 +8,6 @@ export default function Home() {
   let context;
   let bufferLoader;
 
-  const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
-
   function pushMD() {
   // Fix up prefixing
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -87,14 +85,14 @@ export default function Home() {
     }
   }
 
-  function pushSD() {
+  function pushMM() {
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
     context = new AudioContext();
 
     bufferLoader = new BufferLoader(
       context,
       [
-        '/social-distance.mp3'
+        '/mittsuno-mitsu.mp3'
       ],
       finishedLoading
       );
@@ -110,14 +108,14 @@ export default function Home() {
     }
   }
 
-  function pushMM() {
+  function pushSD() {
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
     context = new AudioContext();
 
     bufferLoader = new BufferLoader(
       context,
       [
-        '/mittsuno-mitsu.mp3'
+        '/social-distance.mp3'
       ],
       finishedLoading
       );
@@ -176,44 +174,38 @@ export default function Home() {
 
       <main>
         <h1 className="title">
-          Koike SD-303
+          <img src="/logo.png" width="400px"/>
         </h1>
 
         <p className="description">
-          Load YouTube URL and tap pads below
+          都知事ボイスサンプラー「密パッド」
         </p>
 
-        <p>
-          https://www.youtube.com/watch?v=&nbsp;
-          <input type="text" name="url" className="url" value={url} onChange={handleChange} />
-        </p>
+        <input type="text" name="url" className="url" value={url} placeholder="https://www.youtube.com/watch?v=t-mBoKOk7cM" onChange={handleChange} />
         {url &&
-          <YouTube id={url} />
+          <YouTube url={url} />
         }
 
         <div className="grid">
           <button className="card" onClick={() => pushMD()}>
             密
           </button>
-          <button className="card" onClick={() => pushSD()}>
-            ソ
-          </button>
           <button className="card" onClick={() => pushMM()}>
             三
           </button>
-          <button className="card" onClick={() => pushTK()}>
-            東
+          <button className="card" onClick={() => pushSD()}>
+            ソ
           </button>
         </div>
       </main>
 
       <footer>
         <a
-          href="https://twitter.com/silloi93"
+          href="https://github.com/silloi/mitsu-pad"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Created by Silloi
+          Created by silloi
         </a>
       </footer>
 
@@ -244,6 +236,7 @@ export default function Home() {
           display: flex;
           justify-content: center;
           align-items: center;
+          color: #ccc;
         }
 
         footer img {
@@ -285,7 +278,11 @@ export default function Home() {
 
         .description {
           line-height: 1.5;
-          font-size: 1.5rem;
+          font-size: 1.4rem;
+        }
+
+        .url {
+          width: 360px
         }
 
         code {
@@ -302,32 +299,31 @@ export default function Home() {
           align-items: center;
           justify-content: center;
           flex-wrap: wrap;
-
-          max-width: 800px;
+          max-width: 600px;
           margin-top: 1rem;
         }
 
         .card {
           height: 80px;
           width: 80px;
-          margin: 1rem;
+          margin: 0.6rem;
           flex-basis: 45%;
           padding: 1.5rem;
           text-align: center;
           background-color: #222;
-          color: inherit;
+          color: #0070f3;
           font-size: 1rem;
           text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
+          border: 2px solid #0070f3;
+          border-radius: 4px;
           transition: color 0.15s ease, border-color 0.15s ease;
         }
 
         .card:hover,
         .card:focus,
         .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
+          color: #f20059;
+          border-color: #f20059;
         }
 
         .card h3 {
@@ -343,13 +339,6 @@ export default function Home() {
 
         .logo {
           height: 1em;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
         }
       `}</style>
 
