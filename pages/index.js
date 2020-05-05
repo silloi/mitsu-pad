@@ -8,11 +8,37 @@ export default function Home() {
   let context;
   let bufferLoader;
 
-  function pushMD() {
-  // Fix up prefixing
+  useEffect(() => {
+    // Fix up prefixing
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
     context = new AudioContext();
 
+    startWebAudio(context);
+  })
+
+  function startWebAudio(context) {
+    if (startWebAudio.done) {
+      return;
+    }
+    if (startWebAudio.bufSrc) {
+      startWebAudio.bufSrc.disconnect();
+    }
+    var bufSrc = context.createBufferSource();
+  
+    bufSrc.buffer = context.createBuffer(1, 128, context.sampleRate);
+    bufSrc.onended = function() {
+      startWebAudio.done = true;
+      startWebAudio.bufSrc = null;
+      bufSrc.disconnect();
+    };
+    bufSrc.start(context.currentTime);
+    bufSrc.stop(context.currentTime + bufSrc.buffer.duration);
+    bufSrc.connect(context.destination);
+  
+    startWebAudio.bufSrc = bufSrc;
+  }
+
+  function pushMD() {
     bufferLoader = new BufferLoader(
       context,
       [
@@ -35,60 +61,7 @@ export default function Home() {
     }
   }
 
-  function pushMD() {
-    // Fix up prefixing
-      window.AudioContext = window.AudioContext || window.webkitAudioContext;
-      context = new AudioContext();
-  
-      bufferLoader = new BufferLoader(
-        context,
-        [
-          '/mitsudesu.mp3',
-          '/social-distance.mp3',
-          '/mittsuno-mitsu.mp3',
-          '/tokyotochiji-koikeyuriko.wav'
-        ],
-        finishedLoading
-        );
-  
-      bufferLoader.load();
-  
-      function finishedLoading(bufferList) {
-        let source1 = context.createBufferSource();
-        source1.buffer = bufferList[0];
-      
-        source1.connect(context.destination);
-        source1.start(0);
-      }
-    }
-
-  function pushMD() {
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-    context = new AudioContext();
-
-    bufferLoader = new BufferLoader(
-      context,
-      [
-        '/mitsudesu.mp3'
-      ],
-      finishedLoading
-      );
-
-    bufferLoader.load();
-
-    function finishedLoading(bufferList) {
-      let source1 = context.createBufferSource();
-      source1.buffer = bufferList[0];
-    
-      source1.connect(context.destination);
-      source1.start(0);
-    }
-  }
-
   function pushMM() {
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-    context = new AudioContext();
-
     bufferLoader = new BufferLoader(
       context,
       [
@@ -109,9 +82,6 @@ export default function Home() {
   }
 
   function pushSD() {
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-    context = new AudioContext();
-
     bufferLoader = new BufferLoader(
       context,
       [
@@ -132,9 +102,6 @@ export default function Home() {
   }
 
   function pushTK() {
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-    context = new AudioContext();
-
     bufferLoader = new BufferLoader(
       context,
       [
