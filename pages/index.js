@@ -205,7 +205,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Created by silloi
+          silloi/mitsu-pad
         </a>
       </footer>
 
