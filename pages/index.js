@@ -282,7 +282,7 @@ export default function Home() {
         }
 
         .url {
-          width: 360px
+          width: 320px
         }
 
         code {
